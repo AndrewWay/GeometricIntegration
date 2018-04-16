@@ -22,22 +22,23 @@ InitialEnergy=H(q,p,m,n);
 %p'=p+dt*Hq(q,p')
 
 z=[q;p];
-
+options = optimset('Display','off');
 
 %Calculate p and q vectors for T time steps 
 for t=1:T
     EnergyDiff(t)=abs(InitialEnergy-H(q,p,m,n));
     allQ(t,:,:)=q(:,:);
     Time(t)=t*dt;
+    f=@(x) Func(x,q,p,m,G,J,n,dt);
     %Calculate the momentum vectors for the next time step
     %Calculate the position vectors for the next time step
-    z=fsolve(Func(z,q,p,m,G,J,n,dt),zeros(20,3));
+    z=fsolve(f,z,options);
     q=z(1:n,:);
     p=z(n+1:2*n,:);
 end
 
 plot(Time,EnergyDiff)
-title('Absolute Error of Energy over Time (Forward Euler, dt=1)');
+title('Absolute Error of Energy over Time (Backward Euler, dt=1)');
 ylabel('Absolute Error');
 xlabel('Days');
 fprintf('%s %d\n',"Final energy: ",H(q,p,m,n));

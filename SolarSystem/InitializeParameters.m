@@ -1,6 +1,6 @@
 clear;
 dt=1;
-years=1000;
+years=10;
 days=365*years;
 T=days/dt;
 G=2.95912208286e-4; % Gravitational constant

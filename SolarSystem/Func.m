@@ -6,6 +6,5 @@ function F = Func( x,q,p,m,G,J,n,dt)
 
 F=[q;p]+dt*J*[Hq(x(1:n,:),x(n+1:2*n,:),m,n);Hp(x(1:n,:),x(n+1:2*n,:),m,n)];
 F=F-x;
-size(F)
 end
 
