@@ -1,5 +1,8 @@
+clear;
+
 %PROGRAM PARAMETERS
 
+T=1000;
 s=2;%Stages
 d=2;%Number of dimensions
 n=3;%Number of particles
@@ -28,12 +31,29 @@ z(1,:) = [-1,0];
 z(2,:) = [1,0];
 z(3,:) = [0,1];
 
+SystemMomentum=P(Gamma,z,n);
+fprintf('%s\n',"Initial system state");
+fprintf('%s %d\n',"Point vortex quantity: ",n);
+fprintf('%s %d\n',"H: ",H(Gamma,z,n));
+fprintf('%s %d\n',"Px: ",SystemMomentum(1));
+fprintf('%s %d\n',"Py: ",SystemMomentum(2));
+fprintf('%s %d\n',"Lz: ",L(Gamma,z,n));
+
+
 for t=1:T
 
 
-Z1 = z + dt*(a(1,1)*f(t+c(1)*dt,Z1)+a(1,2)*f(t+c(2)*dt,Z2));
-Z2 = z + dt*(a(2,1)*f(t+c(1)*dt,Z1)+a(2,2)*f(t+c(2)*dt,Z2));
-z = z + dt*(b(1)*f(t+c(1)*dt,Z1) + b(2)*f(t+c(2)*dt,Z2));
+Z1 = z + dt*(a(1,1)*f(Gamma,Z1,n)+a(1,2)*f(Gamma,Z2,n));
+Z2 = z + dt*(a(2,1)*f(Gamma,Z1,n)+a(2,2)*f(Gamma,Z2,n));
+z = z + dt*(b(1)*f(Gamma,Z1,n) + b(2)*f(Gamma,Z2,n));
 
 end
+
+SystemMomentum=P(Gamma,z,n);
+fprintf('%s\n',"Initial system state");
+fprintf('%s %d\n',"Point vortex quantity: ",n);
+fprintf('%s %d\n',"H: ",H(Gamma,z,n));
+fprintf('%s %d\n',"Px: ",SystemMomentum(1));
+fprintf('%s %d\n',"Py: ",SystemMomentum(2));
+fprintf('%s %d\n',"Lz: ",L(Gamma,z,n));
 
