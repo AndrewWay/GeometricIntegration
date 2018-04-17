@@ -24,7 +24,7 @@ z=zeros(3,2);
 Gamma=zeros(3,1);
 
 %Initialize Gamma 
-Gamma(1,:)=1;
+Gamma(:,:)=1;
 
 %Initialize position vectors of 3 points
 z(1,:) = [-1,0];
@@ -42,7 +42,6 @@ fprintf('%s %d\n',"Lz: ",L(Gamma,z,n));
 
 for t=1:T
 
-
 Z1 = z + dt*(a(1,1)*f(Gamma,Z1,n)+a(1,2)*f(Gamma,Z2,n));
 Z2 = z + dt*(a(2,1)*f(Gamma,Z1,n)+a(2,2)*f(Gamma,Z2,n));
 z = z + dt*(b(1)*f(Gamma,Z1,n) + b(2)*f(Gamma,Z2,n));
@@ -50,7 +49,7 @@ z = z + dt*(b(1)*f(Gamma,Z1,n) + b(2)*f(Gamma,Z2,n));
 end
 
 SystemMomentum=P(Gamma,z,n);
-fprintf('%s\n',"Initial system state");
+fprintf('%s\n',"Final system state");
 fprintf('%s %d\n',"Point vortex quantity: ",n);
 fprintf('%s %d\n',"H: ",H(Gamma,z,n));
 fprintf('%s %d\n',"Px: ",SystemMomentum(1));
