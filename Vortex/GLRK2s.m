@@ -44,17 +44,22 @@ fprintf('%s %d\n',"Lz: ",L(Gamma,x,y,n));
 
 for t=1:T
 
-Z1 = z + dt*(a(1,1)*f(Gamma,Z1,n)+a(1,2)*f(Gamma,Z2,n));
-Z2 = z + dt*(a(2,1)*f(Gamma,Z1,n)+a(2,2)*f(Gamma,Z2,n));
-z = z + dt*(b(1)*f(Gamma,Z1,n) + b(2)*f(Gamma,Z2,n));
+Z1 = z + dt*(a(1,1)*f(Gamma,Z1(1:n,1),Z1(n+1:2*n),n)+...
+    a(1,2)*f(Gamma,Z2(1:n,1),Z2(n+1:2*n),n));
+Z2 = z + dt*(a(2,1)*f(Gamma,Z1(1:n,1),Z1(n+1:2*n),n)+...
+    a(2,2)*f(Gamma,Z2(1:n,1),Z2(n+1:2*n),n));
+z = z + dt*(b(1)*f(Gamma,Z1(1:n,1),Z1(n+1:2*n),n) + ...
+    b(2)*f(Gamma,Z2(1:n,1),Z2(n+1:2*n),n));
 
 end
-
-SystemMomentum=P(Gamma,z,n);
+x=z(1:n);
+y=z(n+1:2*n);
+SystemMomentum=P(Gamma,x,y,n);
 fprintf('%s\n',"Final system state");
 fprintf('%s %d\n',"Point vortex quantity: ",n);
-fprintf('%s %d\n',"H: ",H(Gamma,z,n));
+fprintf('%s %d\n',"H: ",H(Gamma,x,y,n));
 fprintf('%s %d\n',"Px: ",SystemMomentum(1));
 fprintf('%s %d\n',"Py: ",SystemMomentum(2));
-fprintf('%s %d\n',"Lz: ",L(Gamma,z,n));
+fprintf('%s %d\n',"Lz: ",L(Gamma,x,y,n));
 
+disp(z)

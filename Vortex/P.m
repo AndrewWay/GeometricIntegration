@@ -1,4 +1,4 @@
-function [ p ] = P( Gamma,q,n )
+function [ p ] = P( Gamma,x,y,n )
 %P Summary of this function goes here
 %   Detailed explanation goes here
 
