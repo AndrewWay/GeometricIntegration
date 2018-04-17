@@ -1,7 +1,14 @@
-function [ output_args ] = dHdy( input_args )
-%F Summary of this function goes here
-%   Detailed explanation goes here
+function [ res ] = dHdy( Gamma,q,n )
+%Assumes q(:,2) is a column vector containing the y coordinates of 
+%the n point vortices
 
+res=zeros(n,1);
 
+for i=1:n
+    for j=1:n
+        res(i,1) = res(i,1) + Gamma(i)*Gamma(j)*r(i,j,q)*(q(i,2)-q(j,2)); 
+    end
+end
+res(:,:)=-1*res(:,1)/(4*pi);
 end
 
