@@ -1,5 +1,5 @@
 
-function [ res ] = f( Gamma,x,y,n )
+function [ res ] = f(t,Gamma,x,y,n )
 %F Summary of this function goes here
 %   Detailed explanation goes here
     
