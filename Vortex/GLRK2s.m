@@ -27,17 +27,19 @@ Gamma=zeros(3,1);
 Gamma(:,:)=1;
 
 %Initialize position vectors of 3 points
-z(1,:) = [-1,0];
-z(2,:) = [1,0];
-z(3,:) = [0,1];
+x=[-1;1;0];
+y=[0;0;1];
 
-SystemMomentum=P(Gamma,z,n);
+z = [x;y];
+
+
+SystemMomentum=P(Gamma,x,y,n);
 fprintf('%s\n',"Initial system state");
 fprintf('%s %d\n',"Point vortex quantity: ",n);
-fprintf('%s %d\n',"H: ",H(Gamma,z,n));
+fprintf('%s %d\n',"H: ",H(Gamma,x,y,n));
 fprintf('%s %d\n',"Px: ",SystemMomentum(1));
 fprintf('%s %d\n',"Py: ",SystemMomentum(2));
-fprintf('%s %d\n',"Lz: ",L(Gamma,z,n));
+fprintf('%s %d\n',"Lz: ",L(Gamma,x,y,n));
 
 
 for t=1:T
